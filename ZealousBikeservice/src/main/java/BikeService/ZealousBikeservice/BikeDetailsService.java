@@ -26,5 +26,11 @@ public class BikeDetailsService
 	{
 		return repo.findById(id);
 	}
+	public String deletebyid(int id)
+	{
+		BikeDetails temp=repo.findById(id).orElse(new BikeDetails());
+		repo.delete(temp);
+		return temp.getCusName()+"has been deleted successfully";
+	}
 
 }
