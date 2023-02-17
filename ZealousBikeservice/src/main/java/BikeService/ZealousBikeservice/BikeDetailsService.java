@@ -22,7 +22,7 @@ public class BikeDetailsService
 		return repo.findAll();
 	}
 	
-	public Optional<BikeDetails> makefetchone(int id)
+	public  Optional<BikeDetails> makefetchone(int id)
 	{
 		return repo.findById(id);
 	}
@@ -31,6 +31,10 @@ public class BikeDetailsService
 		BikeDetails temp=repo.findById(id).orElse(new BikeDetails());
 		repo.delete(temp);
 		return temp.getCusName()+"has been deleted successfully";
+	}
+	public BikeDetails gettingexactone(int cusid)
+	{
+		return repo.findById(cusid).orElse(new BikeDetails());
 	}
 
 }

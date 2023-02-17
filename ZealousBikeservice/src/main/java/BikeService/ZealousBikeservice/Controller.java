@@ -17,6 +17,8 @@ public class Controller
 {
 	@Autowired
 	BikeDetailsService service;
+	@Autowired
+	ServiceDetailsService sservice;
 	
 	//http://locolhost:8080/createbikedetails
 	@PostMapping("/createbikedetails")
@@ -52,5 +54,26 @@ public class Controller
 	public String  deleteabikedetail(@PathVariable("id")int id)
 	{
 		return service.deletebyid(id);
+	}
+	@PostMapping("/createnewservice")
+	public String newservicedetails(@RequestBody ServiceDetails serv)
+	{
+		BikeDetails temp=service.gettingexactone(serv.getBikedetails1().getCusId());
+		
+		if(serv.getBikeTypeofservice()=="free")
+		{
+			int total=serv.getBikeNewproductcost()+(serv.getBikeNewproductcost()*18/100);
+			serv.setBikeFinalamount(total);
+		}
+		else
+		{
+			int total=serv.getBikeNewproductcost()+serv.getBikeLabourcharge();//2500+900=3400
+			total+=(total)*18/100;//3400+=(3400*18/100)
+			serv.setBikeFinalamount(total);
+		}
+		temp.getMyservicedetails().add(serv);
+		serv.setBikedetails1(temp);
+		sservice.newservice(serv);
+		return serv.getBikeJobcardno()+"has been service details is added";
 	}
 }
