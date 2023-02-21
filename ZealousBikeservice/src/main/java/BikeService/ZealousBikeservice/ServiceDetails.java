@@ -37,7 +37,7 @@ public class ServiceDetails
 	private int bikeFinalamount;
 	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn(name = "bikeCustomerid")
-	private BikeDetails Bikedetails1;
+	private BikeDetails bikedetails1;
 	public ServiceDetails() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -56,7 +56,7 @@ public class ServiceDetails
 		this.bikeNewproductcost = bikeNewproductcost;
 		this.bikeLabourcharge = bikeLabourcharge;
 		this.bikeFinalamount = bikeFinalamount;
-		Bikedetails1 = bikedetails1;
+		bikedetails1 = bikedetails1;
 	}
 	@Override
 	public String toString() {
@@ -64,7 +64,7 @@ public class ServiceDetails
 				+ ", bikeDateofservice=" + bikeDateofservice + ", bikeKilometer=" + bikeKilometer + ", bikeStatus="
 				+ bikeStatus + ", bikeTypeofservice=" + bikeTypeofservice + ", bikeEstimatecharge=" + bikeEstimatecharge
 				+ ", bikeNewproductcost=" + bikeNewproductcost + ", bikeLabourcharge=" + bikeLabourcharge
-				+ ", bikeFinalamount=" + bikeFinalamount + ", Bikedetails1=" + Bikedetails1 + "]";
+				+ ", bikeFinalamount=" + bikeFinalamount + ", Bikedetails1=" + bikedetails1 + "]";
 	}
 	public int getBikeJobcardno() {
 		return bikeJobcardno;
@@ -127,10 +127,10 @@ public class ServiceDetails
 		this.bikeFinalamount = bikeFinalamount;
 	}
 	public BikeDetails getBikedetails1() {
-		return Bikedetails1;
+		return bikedetails1;
 	}
 	public void setBikedetails1(BikeDetails bikedetails1) {
-		Bikedetails1 = bikedetails1;
+		bikedetails1 = bikedetails1;
 	}
 
 }

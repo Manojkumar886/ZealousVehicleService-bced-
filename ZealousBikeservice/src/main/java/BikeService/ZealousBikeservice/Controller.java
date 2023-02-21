@@ -68,12 +68,31 @@ public class Controller
 		else
 		{
 			int total=serv.getBikeNewproductcost()+serv.getBikeLabourcharge();//2500+900=3400
-			total+=(total)*18/100;//3400+=(3400*18/100)
+			total+=total*18/100;//3400+=(3400*18/100)
 			serv.setBikeFinalamount(total);
 		}
 		temp.getMyservicedetails().add(serv);
 		serv.setBikedetails1(temp);
 		sservice.newservice(serv);
 		return serv.getBikeJobcardno()+"has been service details is added";
+	}
+	@PutMapping("/updateservicedetails")
+	public String updateservice(@RequestBody ServiceDetails serv)
+	{
+		ServiceDetails temp=sservice.newservice(serv);
+		return temp.getBikeJobcardno()+"has been updated successfully";
+	}
+	
+	@GetMapping("/exactcusidwithservicedetails/{cusid}")
+	public List<ServiceDetails> gettingparticularall(@PathVariable("cusid")int cusid)
+	{
+		BikeDetails temp=service.gettingexactone(cusid);
+		return sservice.Exactcusidwithservicedetails(temp);
+	}
+	
+	@GetMapping("/exactoneservice/{jobcardno}")
+	public Optional<ServiceDetails> findoneservice(@PathVariable("jobcardno")int jobcardno)
+	{
+		return sservice.Exactoneservice(jobcardno);
 	}
 }
