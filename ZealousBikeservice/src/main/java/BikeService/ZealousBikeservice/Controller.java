@@ -34,6 +34,13 @@ public class Controller
 		return temp.getCusName()+"has been updated successfully";
 	}
 	
+	@GetMapping("/exactbikenumber/{bikeno}")
+	public Optional<BikeDetails> findbikeno(@PathVariable("bikeno")String bikeno)
+	{
+		return service.exactbikeno(bikeno);
+	}
+	
+	
 	@GetMapping("/listallbikedetails")
 	public List<BikeDetails> listallbikedetails()
 	{
@@ -79,7 +86,19 @@ public class Controller
 	@PutMapping("/updateservicedetails")
 	public String updateservice(@RequestBody ServiceDetails serv)
 	{
-		ServiceDetails temp=sservice.newservice(serv);
+		if(serv.getBikeTypeofservice()=="free")
+		{
+			int total=serv.getBikeNewproductcost()+(serv.getBikeNewproductcost()*18/100);
+			serv.setBikeFinalamount(total);
+		}
+		else
+		{
+			int total=serv.getBikeNewproductcost()+serv.getBikeLabourcharge();//2500+900=3400
+			total+=total*18/100;//3400+=(3400*18/100)
+			serv.setBikeFinalamount(total);
+		}
+		serv.getBikedetails1().getMyservicedetails().add(serv);
+		ServiceDetails temp=sservice.newservice(serv); 
 		return temp.getBikeJobcardno()+"has been updated successfully";
 	}
 	
@@ -94,5 +113,18 @@ public class Controller
 	public Optional<ServiceDetails> findoneservice(@PathVariable("jobcardno")int jobcardno)
 	{
 		return sservice.Exactoneservice(jobcardno);
+	}
+	
+	@GetMapping("/exacttypeofservice/{typeofservice}")
+	public List<ServiceDetails> findtypeofservice(@PathVariable("typeofservice")String typeofservice)
+	{
+		return sservice.Exacttypeofservice(typeofservice);
+		
+	}
+	
+	@GetMapping("/betweendates/{date1}/{date2}")
+	public List<ServiceDetails> Implementdates(@PathVariable("date1")String date1,@PathVariable("date2")String date2)
+	{
+		return sservice.betweendates(date1, date2);
 	}
 }

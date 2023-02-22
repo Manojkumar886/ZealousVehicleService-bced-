@@ -36,5 +36,10 @@ public class BikeDetailsService
 	{
 		return repo.findById(cusid).orElse(new BikeDetails());
 	}
+	
+	public Optional<BikeDetails> exactbikeno(String number)
+	{
+		return repo.findAllByCusBikeno(number);
+	}
 
 }

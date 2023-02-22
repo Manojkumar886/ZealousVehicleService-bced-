@@ -6,6 +6,7 @@ import java.util.Date;
 import org.springframework.boot.autoconfigure.web.WebProperties.Resources.Chain.Strategy;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -33,9 +34,9 @@ public class ServiceDetails
 	private int bikeEstimatecharge;
 	private int bikeNewproductcost;
 	private int bikeLabourcharge;
-	@Column(name = "bikeTotalamount")
 	private int bikeFinalamount;
 	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+//	@JsonIgnoreProperties(value = {"service_details","hibernateLazyInitializer"})
 	@JoinColumn(name = "bikeCustomerid")
 	private BikeDetails bikedetails1;
 	public ServiceDetails() {
@@ -56,7 +57,7 @@ public class ServiceDetails
 		this.bikeNewproductcost = bikeNewproductcost;
 		this.bikeLabourcharge = bikeLabourcharge;
 		this.bikeFinalamount = bikeFinalamount;
-		bikedetails1 = bikedetails1;
+		this.bikedetails1 = bikedetails1;
 	}
 	@Override
 	public String toString() {
@@ -64,7 +65,7 @@ public class ServiceDetails
 				+ ", bikeDateofservice=" + bikeDateofservice + ", bikeKilometer=" + bikeKilometer + ", bikeStatus="
 				+ bikeStatus + ", bikeTypeofservice=" + bikeTypeofservice + ", bikeEstimatecharge=" + bikeEstimatecharge
 				+ ", bikeNewproductcost=" + bikeNewproductcost + ", bikeLabourcharge=" + bikeLabourcharge
-				+ ", bikeFinalamount=" + bikeFinalamount + ", Bikedetails1=" + bikedetails1 + "]";
+				+ ", bikeFinalamount=" + bikeFinalamount + ", bikedetails1=" + bikedetails1 + "]";
 	}
 	public int getBikeJobcardno() {
 		return bikeJobcardno;
@@ -130,7 +131,7 @@ public class ServiceDetails
 		return bikedetails1;
 	}
 	public void setBikedetails1(BikeDetails bikedetails1) {
-		bikedetails1 = bikedetails1;
+		this.bikedetails1 = bikedetails1;
 	}
-
+	
 }

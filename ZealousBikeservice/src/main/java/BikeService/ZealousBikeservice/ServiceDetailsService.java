@@ -26,5 +26,14 @@ public class ServiceDetailsService
 	{
 		return srepo.findById(jobcard);
 	}
-
+	
+	public List<ServiceDetails> Exacttypeofservice(String typeofservice)
+	{
+		return srepo.findAllBybikeTypeofservice(typeofservice);
+	}
+	
+	public List<ServiceDetails> betweendates(String d1,String d2)
+	{
+		return srepo.findAllBybikeDateofservice(d1, d2);
+	}
 }
