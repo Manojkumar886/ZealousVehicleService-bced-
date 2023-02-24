@@ -9,5 +9,7 @@ import org.springframework.stereotype.Repository;
 public interface BikeDetailsRepositary extends JpaRepository<BikeDetails, Integer>
 {
 	public Optional<BikeDetails> findAllByCusBikeno(String number);
+
+
 	
 }
