@@ -42,6 +42,7 @@ public class ApplicationConfiguration
 		.antMatchers("/mybikeproject")
 		.authenticated();
 		hp.csrf().disable();
+		hp.cors();
 		hp.formLogin();
 		hp.httpBasic();
 		
