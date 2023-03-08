@@ -66,25 +66,26 @@ public class Controller
 	{
 		return service.deletebyid(id);
 	}
+	
 	@PostMapping("/createnewservice")
 	public String newservicedetails(@RequestBody ServiceDetails serv)
 	{
-		BikeDetails temp=service.gettingexactone(serv.getBikedetails1().getCusId());
-		
+		int a=serv.getBikeDetails1().getCusId();
+		BikeDetails temp=service.gettingexactone(a);
+
 		if(serv.getBikeTypeofservice()=="free")
 		{
 			int total=serv.getBikeNewproductcost()+(serv.getBikeNewproductcost()*18/100);
 			serv.setBikeFinalamount(total);
-			
 		}
 		else
 		{
 			int total=serv.getBikeNewproductcost()+serv.getBikeLabourcharge();//2500+900=3400
-			total+=total*18/100;//3400+=(3400*18/100)
+			total+=(total)*18/100;//3400+=(3400*18/100)
 			serv.setBikeFinalamount(total);
 		}
 		temp.getMyservicedetails().add(serv);
-		serv.setBikedetails1(temp);
+		serv.setBikeDetails1(temp);
 		sservice.newservice(serv);
 		return serv.getBikeJobcardno()+"has been service details is added";
 	}
@@ -102,7 +103,7 @@ public class Controller
 			total+=total*18/100;//3400+=(3400*18/100)
 			serv.setBikeFinalamount(total);
 		}
-		serv.getBikedetails1().getMyservicedetails().add(serv);
+		serv.getBikeDetails1().getMyservicedetails().add(serv);
 		ServiceDetails temp=sservice.newservice(serv); 
 		return temp.getBikeJobcardno()+"has been updated successfully";
 	}

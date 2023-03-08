@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ServiceDetailsRepositary extends JpaRepository<ServiceDetails, Integer>
 {
-	public List<ServiceDetails> findAllByBikedetails1(BikeDetails bike);
+	public List<ServiceDetails> findAllByBikeDetails1(BikeDetails bike);
 	
 	public List<ServiceDetails> findAllBybikeTypeofservice(String typeofservice);
 	

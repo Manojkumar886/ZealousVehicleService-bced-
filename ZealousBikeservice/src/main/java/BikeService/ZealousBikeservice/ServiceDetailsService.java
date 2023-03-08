@@ -20,7 +20,7 @@ public class ServiceDetailsService
 	
 	public List<ServiceDetails> Exactcusidwithservicedetails(BikeDetails bike)
 	{
-		return srepo.findAllByBikedetails1(bike);
+		return srepo.findAllByBikeDetails1(bike);
 	}
 	public Optional<ServiceDetails> Exactoneservice(int jobcard)
 	{
